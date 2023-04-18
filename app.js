@@ -18,7 +18,7 @@ let host = 'localhost';
 app.set('view engine', 'ejs');
 
 //connect to database
-mongoose.connect('mongodb://localhost:27017/demos', 
+mongoose.connect('mongodb://0.0.0.0:27017/demos', 
                 {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
 .then(()=>{
     //start app
@@ -34,7 +34,7 @@ app.use(
         secret: "ajfeirf90aeu9eroejfoefj",
         resave: false,
         saveUninitialized: false,
-        store: new MongoStore({mongoUrl: 'mongodb://localhost:27017/demos'}),
+        store: new MongoStore({mongoUrl: 'mongodb://0.0.0.0:27017/demos'}),
         cookie: {maxAge: 60*60*1000}
         })
 );
