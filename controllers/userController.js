@@ -1,6 +1,9 @@
 const model = require('../models/user');
 const Story = require('../models/story');
 
+// add server-side input validation methods
+const { validationResult } = require('express-validator');
+
 exports.new = (req, res)=>{
         return res.render('./user/new');
 };
@@ -37,7 +40,16 @@ exports.getUserLogin = (req, res, next) => {
         return res.render('./user/login');
 }
 
-exports.login = (req, res, next)=>{
+exports.login = (req, res, next) => {
+    let errors = validationResult(req);
+    if (!errors.isEmpty())
+    {
+        errors.array().forEach(error =>
+            {
+                req.flash('error', error.msg);
+            })
+        return res.redirect('back');
+    }
     // convert email to lowercase
     let email = req.body.email;
     if (email)
