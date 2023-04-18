@@ -31,6 +31,7 @@ exports.validateResult = (req, res, next) =>
             })
         return res.redirect('back');
     }
+    return next();
 }
 
 exports.validateStory = [body('title', 'Title cannot be empty.').notEmpty().trim().escape(),

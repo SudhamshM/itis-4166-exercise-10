@@ -22,7 +22,7 @@ exports.create = (req, res, next)=>{
     .catch(err=>{
         if(err.name === 'ValidationError' ) {
         req.flash('error', err.message);
-        return res.redirect('/back');
+        return res.redirect('back');
         }
         next(err);
     });
@@ -64,7 +64,7 @@ exports.update = (req, res, next)=>{
     .catch(err=> {
         if(err.name === 'ValidationError') {
             req.flash('error', err.message);
-            return res.redirect('/back');
+            return res.redirect('back');
         }
         next(err);
     });
