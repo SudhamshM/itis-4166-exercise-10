@@ -8,8 +8,16 @@ exports.new = (req, res)=>{
         return res.render('./user/new');
 };
 
-exports.create = (req, res, next)=>{
-  
+exports.create = (req, res, next) => {
+    let errors = validationResult(req);
+    if (!errors.isEmpty())
+    {
+        errors.array().forEach(error =>
+            {
+                req.flash('error', error.msg);
+            })
+        return res.redirect('back');
+    }
     let user = new model(req.body);
     // convert email to lowercase
     if (user.email)
