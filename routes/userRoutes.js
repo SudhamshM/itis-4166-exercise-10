@@ -1,6 +1,6 @@
 const express = require('express');
 const controller = require('../controllers/userController');
-const {isGuest, isLoggedIn} = require('../middlewares/auth');
+const {isGuest, isLoggedIn } = require('../middlewares/auth');
 const { loginLimiter } = require('../middlewares/rateLimiters');
 // add server-side input validation
 const { validateSignup, validateLogin, validateResult } = require('../middlewares/validator');

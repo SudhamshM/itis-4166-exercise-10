@@ -1,5 +1,4 @@
-const { body } = require('express-validator');
-
+const { body, validationResult } = require('express-validator');
 exports.validateId = (req, res, next) => 
 {
     let id = req.params.id;
@@ -33,3 +32,6 @@ exports.validateResult = (req, res, next) =>
         return res.redirect('back');
     }
 }
+
+exports.validateStory = [body('title', 'Title cannot be empty.').notEmpty().trim().escape(),
+                        body('content', 'Story content cannot be empty.').isLength({min: 10}).trim().escape()]
